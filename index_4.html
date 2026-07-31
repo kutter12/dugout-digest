@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dugout Digest — Reporting You Can Trust</title>
+<meta name="description" content="Dugout Digest — baseball news, features, and analysis. Reporting you can trust.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1F44;
+    --red:#B0182A;
+    --white:#FFFFFF;
+    --grey:#F5F4F0;
+    --ink:#0B0B0C;
+    --line:#e2e0d8;
+    --muted:#5c6373;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Public Sans',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.cond{font-family:'Barlow Condensed','Public Sans',sans-serif;font-weight:700;letter-spacing:.2px;line-height:1.05}
+  a{color:inherit;text-decoration:none}
+  img{display:block}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  .hairline-full{height:3px;background:linear-gradient(to right,var(--red) 0 50%,var(--navy) 50% 100%)}
+
+  /* ===== Top bar ===== */
+  .topbar{background:var(--navy);color:#c9d3e6;font-size:12px;letter-spacing:2px;text-transform:uppercase}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:34px}
+  .topbar .date{opacity:.85}
+  .topbar .tag{color:var(--white);font-weight:600}
+
+  /* ===== Masthead ===== */
+  .masthead{background:var(--white);padding:22px 0 18px}
+  .masthead .wrap{display:flex;align-items:center;gap:18px}
+  .seal{flex:0 0 auto}
+  .brand h1{font-size:52px;color:var(--navy);text-transform:uppercase;line-height:.92}
+  .brand .sub{font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--red);font-weight:700;margin-top:4px}
+  .flagwrap{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+  .flagwrap .motto{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:15px;color:var(--navy);text-transform:uppercase;letter-spacing:1px}
+  .usflag{width:88px;height:auto;border:1px solid rgba(10,31,68,.15);box-shadow:0 1px 3px rgba(10,31,68,.12)}
+
+  /* ===== Nav ===== */
+  nav.main{background:var(--navy)}
+  nav.main .wrap{display:flex;gap:2px;flex-wrap:wrap}
+  nav.main a{
+    color:#e8edf6;font-family:'Barlow Condensed',sans-serif;font-weight:600;
+    text-transform:uppercase;letter-spacing:1.5px;font-size:16px;
+    padding:13px 18px;transition:background .15s,color .15s;
+  }
+  nav.main a:hover,nav.main a.active{background:var(--red);color:#fff}
+
+  /* ===== Lead ===== */
+  .lead{padding:34px 0 10px}
+  .lead-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:34px}
+  @media(max-width:820px){.lead-grid{grid-template-columns:1fr}}
+
+  .feature{border:1px solid var(--line);background:var(--white)}
+  .feature .ph{aspect-ratio:16/9;overflow:hidden;background:var(--navy)}
+  .feature .ph img{width:100%;height:100%;object-fit:cover}
+  .kicker{display:inline-block;background:var(--red);color:#fff;font-family:'Barlow Condensed',sans-serif;
+      font-weight:600;text-transform:uppercase;letter-spacing:1.5px;font-size:13px;padding:5px 11px;margin:16px 16px 0}
+  .feature .body{padding:8px 20px 22px}
+  .feature h2{font-size:36px;color:var(--navy);margin:10px 0}
+  .feature p{color:#33383f;font-size:16.5px}
+  .byline{margin-top:12px;font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;
+      padding-top:9px;position:relative}
+  .byline::before{content:"";position:absolute;top:0;left:0;width:64px;height:2px;
+      background:linear-gradient(to right,var(--red) 0 50%,var(--navy) 50% 100%)}
+
+  .rail h3.railhead{font-size:20px;text-transform:uppercase;color:var(--navy);letter-spacing:1px;
+      padding-bottom:9px;position:relative;margin-bottom:6px}
+  .rail h3.railhead::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:2px;
+      background:linear-gradient(to right,var(--red) 0 40px,var(--navy) 40px 100%)}
+  .rail ul{list-style:none}
+  .rail li{padding:15px 0;border-bottom:1px solid var(--line);display:flex;gap:13px}
+  .rail li:last-child{border-bottom:0}
+  .rail .num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px;color:var(--red);line-height:1;min-width:24px}
+  .rail .t{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:19px;color:var(--navy);line-height:1.1}
+  .rail .m{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-top:3px}
+
+  /* ===== Section grid ===== */
+  section.block{padding:30px 0}
+  .sechead{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
+  .sechead h2{font-size:26px;text-transform:uppercase;color:var(--navy);letter-spacing:1px}
+  .sechead .line{flex:1;height:2px;background:linear-gradient(to right,var(--red) 0 44px,var(--navy) 44px 100%)}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:820px){.cards{grid-template-columns:1fr}}
+  .card{border:1px solid var(--line);background:var(--white);display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
+  .card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(10,31,68,.10)}
+  .card .ph{aspect-ratio:16/10;position:relative;overflow:hidden;background:var(--grey)}
+  .card .ph img{width:100%;height:100%;object-fit:cover}
+  .card .ph .lab{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.92);color:var(--navy);
+      font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:11px;padding:4px 8px}
+  .card .c{padding:14px 16px 18px}
+  .card h3{font-size:21px;color:var(--navy);margin-bottom:7px;line-height:1.08}
+  .card p{font-size:14.5px;color:#454a52}
+  .card .meta{margin-top:11px;font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
+
+  /* ===== Newsletter strip ===== */
+  .strip{background:var(--navy);color:#fff;margin-top:14px}
+  .strip .wrap{display:flex;align-items:center;gap:26px;padding:28px 24px;flex-wrap:wrap}
+  .strip h2{font-size:30px;text-transform:uppercase;line-height:1}
+  .strip p{color:#c3cde0;font-size:14.5px;max-width:420px}
+  .strip form{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+  .strip input{border:0;padding:12px 14px;font-family:inherit;font-size:15px;min-width:220px}
+  .strip button{background:var(--red);color:#fff;border:0;padding:12px 22px;cursor:pointer;
+      font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;font-size:16px}
+  .strip button:hover{background:#cf1e33}
+
+  /* ===== Footer ===== */
+  footer{background:#07152f;color:#9fb0cc;font-size:13.5px}
+  footer .wrap{display:flex;justify-content:space-between;gap:24px;padding:30px 24px;flex-wrap:wrap;align-items:center}
+  footer .fbrand{display:flex;align-items:center;gap:12px;color:#fff}
+  footer .fbrand strong{font-family:'Barlow Condensed',sans-serif;font-size:22px;text-transform:uppercase;letter-spacing:1px}
+  footer a:hover{color:#fff}
+  footer .links{display:flex;gap:18px;flex-wrap:wrap;text-transform:uppercase;letter-spacing:1px;font-size:12px}
+</style>
+</head>
+<body>
+
+  <!-- top bar -->
+  <div class="topbar"><div class="wrap">
+    <span class="date">Friday, July 31, 2026</span>
+    <span class="tag">Reporting You Can Trust</span>
+  </div></div>
+
+  <!-- masthead -->
+  <header class="masthead"><div class="wrap">
+    <div class="seal">
+      <!-- home-plate DD seal, point down -->
+      <svg width="66" height="66" viewBox="0 0 100 100" aria-label="Dugout Digest">
+        <path d="M16 12 H84 V50 L50 90 L16 50 Z" fill="#0A1F44" stroke="#B0182A" stroke-width="6" stroke-linejoin="round"/>
+        <text x="50" y="55" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="34" fill="#fff" letter-spacing="1">DD</text>
+      </svg>
+    </div>
+    <div class="brand">
+      <h1>Dugout Digest</h1>
+      <div class="sub">Est. Sports Editorial</div>
+    </div>
+    <div class="flagwrap">
+      <!-- US flag, accurate 50-star layout, brand palette -->
+      <svg class="usflag" viewBox="0 0 1900 1000" role="img" aria-label="United States flag" preserveAspectRatio="xMidYMid meet"><rect width="1900" height="1000" fill="#FFFFFF"/><g fill="#B0182A"><rect y="0.00" width="1900" height="76.92"/><rect y="153.85" width="1900" height="76.92"/><rect y="307.69" width="1900" height="76.92"/><rect y="461.54" width="1900" height="76.92"/><rect y="615.38" width="1900" height="76.92"/><rect y="769.23" width="1900" height="76.92"/><rect y="923.08" width="1900" height="76.92"/></g><rect width="760.0" height="538.5" fill="#0A1F44"/><path fill="#FFFFFF" d="M 63.3,-1.1 L 70.3,20.3 L 92.8,20.3 L 74.6,33.6 L 81.6,55.0 L 63.3,41.8 L 45.1,55.0 L 52.1,33.6 L 33.9,20.3 L 56.4,20.3 Z M 190.0,-1.1 L 197.0,20.3 L 219.5,20.3 L 201.3,33.6 L 208.2,55.0 L 190.0,41.8 L 171.8,55.0 L 178.7,33.6 L 160.5,20.3 L 183.0,20.3 Z M 316.7,-1.1 L 323.6,20.3 L 346.1,20.3 L 327.9,33.6 L 334.9,55.0 L 316.7,41.8 L 298.4,55.0 L 305.4,33.6 L 287.2,20.3 L 309.7,20.3 Z M 443.3,-1.1 L 450.3,20.3 L 472.8,20.3 L 454.6,33.6 L 461.6,55.0 L 443.3,41.8 L 425.1,55.0 L 432.1,33.6 L 413.9,20.3 L 436.4,20.3 Z M 570.0,-1.1 L 577.0,20.3 L 599.5,20.3 L 581.3,33.6 L 588.2,55.0 L 570.0,41.8 L 551.8,55.0 L 558.7,33.6 L 540.5,20.3 L 563.0,20.3 Z M 696.7,-1.1 L 703.6,20.3 L 726.1,20.3 L 707.9,33.6 L 714.9,55.0 L 696.7,41.8 L 678.4,55.0 L 685.4,33.6 L 667.2,20.3 L 689.7,20.3 Z M 126.7,58.7 L 133.6,80.2 L 156.1,80.2 L 137.9,93.4 L 144.9,114.8 L 126.7,101.6 L 108.4,114.8 L 115.4,93.4 L 97.2,80.2 L 119.7,80.2 Z M 253.3,58.7 L 260.3,80.2 L 282.8,80.2 L 264.6,93.4 L 271.6,114.8 L 253.3,101.6 L 235.1,114.8 L 242.1,93.4 L 223.9,80.2 L 246.4,80.2 Z M 380.0,58.7 L 387.0,80.2 L 409.5,80.2 L 391.3,93.4 L 398.2,114.8 L 380.0,101.6 L 361.8,114.8 L 368.7,93.4 L 350.5,80.2 L 373.0,80.2 Z M 506.7,58.7 L 513.6,80.2 L 536.1,80.2 L 517.9,93.4 L 524.9,114.8 L 506.7,101.6 L 488.4,114.8 L 495.4,93.4 L 477.2,80.2 L 499.7,80.2 Z M 633.3,58.7 L 640.3,80.2 L 662.8,80.2 L 644.6,93.4 L 651.6,114.8 L 633.3,101.6 L 615.1,114.8 L 622.1,93.4 L 603.9,80.2 L 626.4,80.2 Z M 63.3,118.6 L 70.3,140.0 L 92.8,140.0 L 74.6,153.2 L 81.6,174.7 L 63.3,161.4 L 45.1,174.7 L 52.1,153.2 L 33.9,140.0 L 56.4,140.0 Z M 190.0,118.6 L 197.0,140.0 L 219.5,140.0 L 201.3,153.2 L 208.2,174.7 L 190.0,161.4 L 171.8,174.7 L 178.7,153.2 L 160.5,140.0 L 183.0,140.0 Z M 316.7,118.6 L 323.6,140.0 L 346.1,140.0 L 327.9,153.2 L 334.9,174.7 L 316.7,161.4 L 298.4,174.7 L 305.4,153.2 L 287.2,140.0 L 309.7,140.0 Z M 443.3,118.6 L 450.3,140.0 L 472.8,140.0 L 454.6,153.2 L 461.6,174.7 L 443.3,161.4 L 425.1,174.7 L 432.1,153.2 L 413.9,140.0 L 436.4,140.0 Z M 570.0,118.6 L 577.0,140.0 L 599.5,140.0 L 581.3,153.2 L 588.2,174.7 L 570.0,161.4 L 551.8,174.7 L 558.7,153.2 L 540.5,140.0 L 563.0,140.0 Z M 696.7,118.6 L 703.6,140.0 L 726.1,140.0 L 707.9,153.2 L 714.9,174.7 L 696.7,161.4 L 678.4,174.7 L 685.4,153.2 L 667.2,140.0 L 689.7,140.0 Z M 126.7,178.4 L 133.6,199.8 L 156.1,199.8 L 137.9,213.1 L 144.9,234.5 L 126.7,221.2 L 108.4,234.5 L 115.4,213.1 L 97.2,199.8 L 119.7,199.8 Z M 253.3,178.4 L 260.3,199.8 L 282.8,199.8 L 264.6,213.1 L 271.6,234.5 L 253.3,221.2 L 235.1,234.5 L 242.1,213.1 L 223.9,199.8 L 246.4,199.8 Z M 380.0,178.4 L 387.0,199.8 L 409.5,199.8 L 391.3,213.1 L 398.2,234.5 L 380.0,221.2 L 361.8,234.5 L 368.7,213.1 L 350.5,199.8 L 373.0,199.8 Z M 506.7,178.4 L 513.6,199.8 L 536.1,199.8 L 517.9,213.1 L 524.9,234.5 L 506.7,221.2 L 488.4,234.5 L 495.4,213.1 L 477.2,199.8 L 499.7,199.8 Z M 633.3,178.4 L 640.3,199.8 L 662.8,199.8 L 644.6,213.1 L 651.6,234.5 L 633.3,221.2 L 615.1,234.5 L 622.1,213.1 L 603.9,199.8 L 626.4,199.8 Z M 63.3,238.2 L 70.3,259.7 L 92.8,259.7 L 74.6,272.9 L 81.6,294.3 L 63.3,281.1 L 45.1,294.3 L 52.1,272.9 L 33.9,259.7 L 56.4,259.7 Z M 190.0,238.2 L 197.0,259.7 L 219.5,259.7 L 201.3,272.9 L 208.2,294.3 L 190.0,281.1 L 171.8,294.3 L 178.7,272.9 L 160.5,259.7 L 183.0,259.7 Z M 316.7,238.2 L 323.6,259.7 L 346.1,259.7 L 327.9,272.9 L 334.9,294.3 L 316.7,281.1 L 298.4,294.3 L 305.4,272.9 L 287.2,259.7 L 309.7,259.7 Z M 443.3,238.2 L 450.3,259.7 L 472.8,259.7 L 454.6,272.9 L 461.6,294.3 L 443.3,281.1 L 425.1,294.3 L 432.1,272.9 L 413.9,259.7 L 436.4,259.7 Z M 570.0,238.2 L 577.0,259.7 L 599.5,259.7 L 581.3,272.9 L 588.2,294.3 L 570.0,281.1 L 551.8,294.3 L 558.7,272.9 L 540.5,259.7 L 563.0,259.7 Z M 696.7,238.2 L 703.6,259.7 L 726.1,259.7 L 707.9,272.9 L 714.9,294.3 L 696.7,281.1 L 678.4,294.3 L 685.4,272.9 L 667.2,259.7 L 689.7,259.7 Z M 126.7,298.1 L 133.6,319.5 L 156.1,319.5 L 137.9,332.7 L 144.9,354.1 L 126.7,340.9 L 108.4,354.1 L 115.4,332.7 L 97.2,319.5 L 119.7,319.5 Z M 253.3,298.1 L 260.3,319.5 L 282.8,319.5 L 264.6,332.7 L 271.6,354.1 L 253.3,340.9 L 235.1,354.1 L 242.1,332.7 L 223.9,319.5 L 246.4,319.5 Z M 380.0,298.1 L 387.0,319.5 L 409.5,319.5 L 391.3,332.7 L 398.2,354.1 L 380.0,340.9 L 361.8,354.1 L 368.7,332.7 L 350.5,319.5 L 373.0,319.5 Z M 506.7,298.1 L 513.6,319.5 L 536.1,319.5 L 517.9,332.7 L 524.9,354.1 L 506.7,340.9 L 488.4,354.1 L 495.4,332.7 L 477.2,319.5 L 499.7,319.5 Z M 633.3,298.1 L 640.3,319.5 L 662.8,319.5 L 644.6,332.7 L 651.6,354.1 L 633.3,340.9 L 615.1,354.1 L 622.1,332.7 L 603.9,319.5 L 626.4,319.5 Z M 63.3,357.9 L 70.3,379.3 L 92.8,379.3 L 74.6,392.5 L 81.6,414.0 L 63.3,400.7 L 45.1,414.0 L 52.1,392.5 L 33.9,379.3 L 56.4,379.3 Z M 190.0,357.9 L 197.0,379.3 L 219.5,379.3 L 201.3,392.5 L 208.2,414.0 L 190.0,400.7 L 171.8,414.0 L 178.7,392.5 L 160.5,379.3 L 183.0,379.3 Z M 316.7,357.9 L 323.6,379.3 L 346.1,379.3 L 327.9,392.5 L 334.9,414.0 L 316.7,400.7 L 298.4,414.0 L 305.4,392.5 L 287.2,379.3 L 309.7,379.3 Z M 443.3,357.9 L 450.3,379.3 L 472.8,379.3 L 454.6,392.5 L 461.6,414.0 L 443.3,400.7 L 425.1,414.0 L 432.1,392.5 L 413.9,379.3 L 436.4,379.3 Z M 570.0,357.9 L 577.0,379.3 L 599.5,379.3 L 581.3,392.5 L 588.2,414.0 L 570.0,400.7 L 551.8,414.0 L 558.7,392.5 L 540.5,379.3 L 563.0,379.3 Z M 696.7,357.9 L 703.6,379.3 L 726.1,379.3 L 707.9,392.5 L 714.9,414.0 L 696.7,400.7 L 678.4,414.0 L 685.4,392.5 L 667.2,379.3 L 689.7,379.3 Z M 126.7,417.7 L 133.6,439.1 L 156.1,439.1 L 137.9,452.4 L 144.9,473.8 L 126.7,460.6 L 108.4,473.8 L 115.4,452.4 L 97.2,439.1 L 119.7,439.1 Z M 253.3,417.7 L 260.3,439.1 L 282.8,439.1 L 264.6,452.4 L 271.6,473.8 L 253.3,460.6 L 235.1,473.8 L 242.1,452.4 L 223.9,439.1 L 246.4,439.1 Z M 380.0,417.7 L 387.0,439.1 L 409.5,439.1 L 391.3,452.4 L 398.2,473.8 L 380.0,460.6 L 361.8,473.8 L 368.7,452.4 L 350.5,439.1 L 373.0,439.1 Z M 506.7,417.7 L 513.6,439.1 L 536.1,439.1 L 517.9,452.4 L 524.9,473.8 L 506.7,460.6 L 488.4,473.8 L 495.4,452.4 L 477.2,439.1 L 499.7,439.1 Z M 633.3,417.7 L 640.3,439.1 L 662.8,439.1 L 644.6,452.4 L 651.6,473.8 L 633.3,460.6 L 615.1,473.8 L 622.1,452.4 L 603.9,439.1 L 626.4,439.1 Z M 63.3,477.5 L 70.3,499.0 L 92.8,499.0 L 74.6,512.2 L 81.6,533.6 L 63.3,520.4 L 45.1,533.6 L 52.1,512.2 L 33.9,499.0 L 56.4,499.0 Z M 190.0,477.5 L 197.0,499.0 L 219.5,499.0 L 201.3,512.2 L 208.2,533.6 L 190.0,520.4 L 171.8,533.6 L 178.7,512.2 L 160.5,499.0 L 183.0,499.0 Z M 316.7,477.5 L 323.6,499.0 L 346.1,499.0 L 327.9,512.2 L 334.9,533.6 L 316.7,520.4 L 298.4,533.6 L 305.4,512.2 L 287.2,499.0 L 309.7,499.0 Z M 443.3,477.5 L 450.3,499.0 L 472.8,499.0 L 454.6,512.2 L 461.6,533.6 L 443.3,520.4 L 425.1,533.6 L 432.1,512.2 L 413.9,499.0 L 436.4,499.0 Z M 570.0,477.5 L 577.0,499.0 L 599.5,499.0 L 581.3,512.2 L 588.2,533.6 L 570.0,520.4 L 551.8,533.6 L 558.7,512.2 L 540.5,499.0 L 563.0,499.0 Z M 696.7,477.5 L 703.6,499.0 L 726.1,499.0 L 707.9,512.2 L 714.9,533.6 L 696.7,520.4 L 678.4,533.6 L 685.4,512.2 L 667.2,499.0 L 689.7,499.0 Z"/></svg>
+      <span class="motto">Reporting You Can Trust</span>
+    </div>
+  </div></header>
+
+  <!-- nav -->
+  <nav class="main"><div class="wrap">
+    <a href="#" class="active">Home</a>
+    <a href="#">MLB</a>
+    <a href="#">College</a>
+    <a href="#">Prospects</a>
+    <a href="#">Analysis</a>
+    <a href="#">About</a>
+  </div></nav>
+
+  <!-- lead -->
+  <div class="wrap lead">
+    <div class="lead-grid">
+
+      <article class="feature">
+        <div class="ph"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3ExpBaQ6MRTgmrk9EkJNKx2pc4q/hf_20260731_193611_a75cc763-2a3b-476a-becf-1fbeb2bf73b4.png" alt="Baseball game action under stadium lights"></div>
+        <span class="kicker">Top Story</span>
+        <div class="body">
+          <h2>Aces Rally Late to Steal Series Opener in Extras</h2>
+          <p>A two-out double in the tenth flipped the script on a night the bullpen looked shaky — and the clubhouse walked away believing this run is different.</p>
+          <div class="byline">By Staff Writer · Game Report · 6 min read</div>
+        </div>
+      </article>
+
+      <aside class="rail">
+        <h3 class="railhead">Most Read</h3>
+        <ul>
+          <li><span class="num">1</span><div><div class="t">Five Prospects Who Forced Their Way Onto the Radar</div><div class="m">Prospects</div></div></li>
+          <li><span class="num">2</span><div><div class="t">The Slider That's Quietly Breaking Records</div><div class="m">Analysis</div></div></li>
+          <li><span class="num">3</span><div><div class="t">Inside a Program's Undefeated Spring</div><div class="m">College</div></div></li>
+          <li><span class="num">4</span><div><div class="t">Draft Board: Who's Rising, Who's Sliding</div><div class="m">College</div></div></li>
+          <li><span class="num">5</span><div><div class="t">Why the Sacrifice Bunt Won't Die</div><div class="m">Opinion</div></div></li>
+        </ul>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- latest -->
+  <section class="block"><div class="wrap">
+    <div class="sechead"><h2>Latest</h2><span class="line"></span></div>
+    <div class="cards">
+
+      <article class="card">
+        <div class="ph"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3ExpBaQ6MRTgmrk9EkJNKx2pc4q/hf_20260731_193612_2f11c7bd-6125-4592-92d3-341f008015b8.png" alt="College pitcher mid-windup"><span class="lab">College</span></div>
+        <div class="c">
+          <h3>Freshman Phenom Cools the Hottest Lineup in the Conference</h3>
+          <p>Seven shutout innings on the road, and a poise that belies the calendar.</p>
+          <div class="meta">By Staff Writer · 4 min</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="ph"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3ExpBaQ6MRTgmrk9EkJNKx2pc4q/hf_20260731_193614_a1945c76-b0fc-41b7-af4e-600a2830164b.png" alt="Close-up of a pitcher's grip on a baseball"><span class="lab">Analysis</span></div>
+        <div class="c">
+          <h3>The Numbers Behind the Best Two-Strike Approach in Baseball</h3>
+          <p>Contact isn't luck. We break down the swing decisions driving the surge.</p>
+          <div class="meta">By Staff Writer · 7 min</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="ph"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3ExpBaQ6MRTgmrk9EkJNKx2pc4q/hf_20260731_193615_abe4cd2c-c8a3-498c-bde3-ca1386bd0e44.png" alt="Baserunner sliding into second base"><span class="lab">Prospects</span></div>
+        <div class="c">
+          <h3>The Draft-Day Riser Nobody Saw Coming</h3>
+          <p>A five-tool profile and a motor that turns routine plays into highlights.</p>
+          <div class="meta">By Staff Writer · 5 min</div>
+        </div>
+      </article>
+
+    </div>
+  </div></section>
+
+  <!-- newsletter -->
+  <div class="strip"><div class="wrap">
+    <div>
+      <h2>Never Miss a Story</h2>
+      <p>The week's best baseball reporting, straight to your inbox. Free, always.</p>
+    </div>
+    <form onsubmit="return false">
+      <input type="email" placeholder="you@email.com" aria-label="Email">
+      <button type="submit">Sign Up</button>
+    </form>
+  </div></div>
+
+  <div class="hairline-full"></div>
+
+  <!-- footer -->
+  <footer><div class="wrap">
+    <div class="fbrand">
+      <svg width="40" height="40" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M16 12 H84 V50 L50 90 L16 50 Z" fill="#0A1F44" stroke="#B0182A" stroke-width="7" stroke-linejoin="round"/>
+        <text x="50" y="55" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="34" fill="#fff">DD</text>
+      </svg>
+      <strong>Dugout Digest</strong>
+    </div>
+    <div class="links">
+      <a href="#">MLB</a><a href="#">College</a><a href="#">Prospects</a>
+      <a href="#">Analysis</a><a href="#">About</a><a href="#">Contact</a>
+    </div>
+    <div>© 2026 Dugout Digest · Reporting You Can Trust</div>
+  </div></footer>
+
+</body>
+</html>
