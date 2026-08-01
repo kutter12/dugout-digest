@@ -1,0 +1,13 @@
+---
+layout: base.njk
+---
+<main class="article"><div class="wrap"><div class="article-wrap">
+  <a href="/" class="back">&larr; Back to all stories</a>
+  <div style="height:6px"></div>
+  {% if category %}<span class="cat">{{ category }}</span>{% endif %}
+  <h1>{{ title }}</h1>
+  <div class="amETA">{% if date %}{{ date | readableDate }}{% endif %}{% if category %} &middot; {{ category }}{% endif %}</div>
+  {% if image %}<img class="hero" src="{{ image }}" alt="{{ title }}">{% endif %}
+  <div class="prose">{{ content | safe }}</div>
+  <a href="/" class="back">&larr; Back to all stories</a>
+</div></div></main>

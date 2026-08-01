@@ -1,0 +1,63 @@
+---
+layout: base.njk
+title: Home
+permalink: /
+---
+{% set posts = collections.posts | reverse %}
+{% set lead = posts[0] %}
+
+<div class="wrap lead">
+  <div class="lead-grid">
+
+    {% if lead %}
+    <article class="feature">
+      <a href="{{ lead.url }}">
+        {% if lead.data.image %}<div class="ph"><img src="{{ lead.data.image }}" alt="{{ lead.data.title }}"></div>{% endif %}
+      </a>
+      <span class="kicker">Top Story</span>
+      <div class="body">
+        <h2><a href="{{ lead.url }}" style="color:inherit">{{ lead.data.title }}</a></h2>
+        {% if lead.data.excerpt %}<p>{{ lead.data.excerpt }}</p>{% endif %}
+        <div class="byline">{% if lead.data.category %}{{ lead.data.category }} &middot; {% endif %}{{ lead.date | readableDate }}</div>
+      </div>
+    </article>
+    {% else %}
+    <div class="empty">No stories yet. Use the writing dashboard to publish your first one.</div>
+    {% endif %}
+
+    <aside class="rail">
+      <h3 class="railhead">Headlines</h3>
+      <ul>
+        {% for post in posts %}
+          {% if loop.index0 < 5 %}
+          <li><a href="{{ post.url }}"><span class="num">{{ loop.index }}</span><div><div class="t">{{ post.data.title }}</div><div class="m">{{ post.data.category }}</div></div></a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </aside>
+
+  </div>
+</div>
+
+<section class="block"><div class="wrap">
+  <div class="sechead"><h2>Latest</h2><span class="line"></span></div>
+  <div class="cards">
+    {% for post in posts %}
+      {% if loop.index0 > 0 and loop.index0 < 4 %}
+      <article class="card">
+        <a href="{{ post.url }}">
+          <div class="ph">
+            {% if post.data.image %}<img src="{{ post.data.image }}" alt="{{ post.data.title }}">{% endif %}
+            {% if post.data.category %}<span class="lab">{{ post.data.category }}</span>{% endif %}
+          </div>
+        </a>
+        <div class="c">
+          <h3><a href="{{ post.url }}" style="color:inherit">{{ post.data.title }}</a></h3>
+          {% if post.data.excerpt %}<p>{{ post.data.excerpt }}</p>{% endif %}
+          <div class="meta">{% if post.data.category %}{{ post.data.category }} &middot; {% endif %}{{ post.date | readableDate }}</div>
+        </div>
+      </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div></section>

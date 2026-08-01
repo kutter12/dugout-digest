@@ -1,0 +1,35 @@
+---
+layout: base.njk
+pagination:
+  data: categories
+  size: 1
+  alias: category
+permalink: "/{{ category | slug }}/"
+eleventyComputed:
+  title: "{{ category }}"
+---
+{% set catposts = collections.posts | byCategory(category) | reverse %}
+<div class="wrap pagehead"><h1>{{ category }}</h1></div>
+<section class="block"><div class="wrap">
+  {% if catposts.length %}
+  <div class="cards">
+    {% for post in catposts %}
+    <article class="card">
+      <a href="{{ post.url }}">
+        <div class="ph">
+          {% if post.data.image %}<img src="{{ post.data.image }}" alt="{{ post.data.title }}">{% endif %}
+          {% if post.data.category %}<span class="lab">{{ post.data.category }}</span>{% endif %}
+        </div>
+      </a>
+      <div class="c">
+        <h3><a href="{{ post.url }}" style="color:inherit">{{ post.data.title }}</a></h3>
+        {% if post.data.excerpt %}<p>{{ post.data.excerpt }}</p>{% endif %}
+        <div class="meta">{% if post.data.category %}{{ post.data.category }} &middot; {% endif %}{{ post.date | readableDate }}</div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="empty">No stories in {{ category }} yet — check back soon.</p>
+  {% endif %}
+</div></section>
