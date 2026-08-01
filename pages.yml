@@ -1,0 +1,34 @@
+media:
+  input: src/images
+  output: /images
+
+content:
+  - name: posts
+    label: Articles
+    type: collection
+    path: src/posts
+    filename: '{fields.title}.md'
+    fields:
+      - name: title
+        label: Headline
+        type: string
+      - name: category
+        label: Category
+        type: select
+        options:
+          - MLB
+          - College
+          - Prospects
+          - Analysis
+      - name: date
+        label: Date
+        type: date
+      - name: image
+        label: Photo
+        type: image
+      - name: excerpt
+        label: Summary (the line shown under the headline on the homepage)
+        type: text
+      - name: body
+        label: Story
+        type: rich-text
