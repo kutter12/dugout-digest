@@ -13,9 +13,8 @@ content:
         label: Headline
         type: string
       - name: category
-        label: Category
-        type: select
-        values: [MLB, College, Prospects, Analysis]
+        label: Category (MLB, College, Prospects, or Analysis)
+        type: string
       - name: date
         label: Date
         type: date
