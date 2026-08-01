@@ -15,11 +15,7 @@ content:
       - name: category
         label: Category
         type: select
-        values:
-          - MLB
-          - College
-          - Prospects
-          - Analysis
+        values: [MLB, College, Prospects, Analysis]
       - name: date
         label: Date
         type: date
