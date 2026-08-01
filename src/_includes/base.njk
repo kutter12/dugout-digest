@@ -49,8 +49,10 @@
       <h2>Never Miss a Story</h2>
       <p>The week's best baseball reporting, straight to your inbox. Free, always.</p>
     </div>
-    <form onsubmit="return false">
-      <input type="email" placeholder="you@email.com" aria-label="Email">
+    <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="newsletter">
+      <p style="display:none"><label>Leave this empty: <input name="bot-field"></label></p>
+      <input type="email" name="email" placeholder="you@email.com" aria-label="Email" required>
       <button type="submit">Sign Up</button>
     </form>
   </div></div>
