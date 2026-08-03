@@ -4,7 +4,8 @@ title: Home
 permalink: /
 ---
 {% set posts = collections.posts | reverse %}
-{% set lead = posts[0] %}
+{% set lead = collections.posts | pickLead %}
+{% set rest = posts | without(lead) %}
 
 <div class="wrap lead">
   <div class="lead-grid">
@@ -42,8 +43,8 @@ permalink: /
 <section class="block"><div class="wrap">
   <div class="sechead"><h2>Latest</h2><span class="line"></span></div>
   <div class="cards">
-    {% for post in posts %}
-      {% if loop.index0 > 0 and loop.index0 < 4 %}
+    {% for post in rest %}
+      {% if loop.index0 < 3 %}
       <article class="card">
         <a href="{{ post.url }}">
           <div class="ph">
