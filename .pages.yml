@@ -27,3 +27,6 @@ content:
       - name: body
         label: Story
         type: rich-text
+      - name: featured
+        label: Make this the Top Story
+        type: boolean
