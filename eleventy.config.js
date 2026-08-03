@@ -19,6 +19,20 @@ module.exports = function (eleventyConfig) {
     return (posts || []).filter((p) => p.data.category === cat);
   });
 
+  // Pick the homepage lead: a post marked "featured" wins (newest if several),
+  // otherwise the newest post overall.
+  eleventyConfig.addFilter("pickLead", function (posts) {
+    const arr = posts || [];
+    const featured = arr.filter((p) => p.data.featured);
+    const pool = featured.length ? featured : arr;
+    return pool.slice().sort((a, b) => b.date - a.date)[0];
+  });
+
+  // Return the list without a given item (keeps the lead out of the grid).
+  eleventyConfig.addFilter("without", function (posts, item) {
+    return (posts || []).filter((p) => p !== item);
+  });
+
   return {
     dir: { input: "src", includes: "_includes", data: "_data", output: "_site" },
     markdownTemplateEngine: "njk",
