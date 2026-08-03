@@ -3,6 +3,7 @@ title: "Braves Land Veteran RHP Tyler Mahle from Giants to Bolster
   Injury-Riddled Rotation "
 category: MLB
 date: 2026-08-02
+image: /images/hf_20260803_034135_67dbcce0-0975-4723-9978-931016d7bc55.png
 ---
 The Atlanta Braves have acquired vet Tyler Mahle (31) from the San Francisco Giants, the teams announced Sunday.  
 
