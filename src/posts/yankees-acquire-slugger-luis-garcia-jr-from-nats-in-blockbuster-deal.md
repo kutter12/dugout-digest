@@ -3,7 +3,7 @@ title: "Yankees acquire slugger Luis Garcia Jr. From Nats in blockbuster deal "
 category: MLB
 date: 2026-08-03
 image: /images/hf_20260803_183049_c5f89eba-63f5-4848-802a-0f464bfdad83_min.webp
-featured: false
+featured: true
 ---
 The New York Yankees acquired INF Luis Garcia Jr from the Washington Nationals in exchange for four right-handed pitchers, the teams announced Sunday. 
 
